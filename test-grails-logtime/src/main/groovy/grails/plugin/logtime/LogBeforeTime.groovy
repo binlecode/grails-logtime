@@ -9,4 +9,9 @@ import java.lang.annotation.Target
 @Target(ElementType.METHOD)
 public @interface LogBeforeTime {
 
+    String level() default 'debug'
+
+    String format() default "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
+
 }

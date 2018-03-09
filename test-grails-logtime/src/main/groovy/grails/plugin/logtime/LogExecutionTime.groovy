@@ -9,9 +9,11 @@ import java.lang.annotation.Target
 @Target(ElementType.METHOD)
 public @interface LogExecutionTime {
 
-    String value() default ""
+    String value() default ''
 
-    String level() default "debug"
+    String level() default 'debug'
+
+    String format() default "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
     //todo: add more optional fields
 

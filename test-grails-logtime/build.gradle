@@ -61,7 +61,7 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
     //////
-    console "org.grails:grails-console"
+    compile 'org.grails.plugins:grails-console:2.0.9'
 
 }
 
