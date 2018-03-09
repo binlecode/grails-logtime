@@ -1,4 +1,4 @@
-package grails.logtime
+package grails.plugin.logtime
 
 import grails.boot.GrailsApp
 import grails.boot.config.GrailsAutoConfiguration

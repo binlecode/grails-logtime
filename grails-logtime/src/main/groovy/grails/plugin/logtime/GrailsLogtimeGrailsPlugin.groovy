@@ -40,9 +40,16 @@ A Grails plugin to provide simple logging of method execution time.
 //    def scm = [ url: "http://svn.codehaus.org/grails-plugins/" ]
 
     Closure doWithSpring() { {->
-            // TODO Implement runtime spring config (optional)
-        }
-    }
+        // TODO Implement runtime spring config (optional)
+        def ltConfig = config.logtime
+
+        // log-before-method-call aspect
+        logBeforeTimeAspect(LogBeforeTimeAspect)
+
+        // log-around-method-call aspect to track execution time
+        logExecutionTimeAspect(LogExecutionTimeAspect)
+
+    } }
 
     void doWithDynamicMethods() {
         // TODO Implement registering dynamic methods to classes (optional)

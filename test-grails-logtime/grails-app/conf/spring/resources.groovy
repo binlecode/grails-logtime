@@ -5,8 +5,6 @@ import grails.plugin.logtime.LogExecutionTimeAspect
 beans = {
 
 
-    logBeforeTimeAspect(LogBeforeTimeAspect)
-    logExecutionTimeAspect(LogExecutionTimeAspect)
 
 
 }

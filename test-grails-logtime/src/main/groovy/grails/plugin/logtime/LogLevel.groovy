@@ -1,5 +1,0 @@
-package grails.plugin.logtime
-
-
-
-
