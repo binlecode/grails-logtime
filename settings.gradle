@@ -1,1 +1,3 @@
-include 'grails-logtime', 'test-grails-logtime'
+
+include 'grails-logtime'
+include 'test-grails-logtime'
