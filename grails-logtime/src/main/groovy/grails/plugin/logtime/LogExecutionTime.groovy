@@ -13,7 +13,15 @@ public @interface LogExecutionTime {
 
     String level() default 'debug'
 
-    String format() default "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    String message() default ''
+
+    String beforeMessage() default ''
+
+    String afterMessage() default ''
+
+    String timeUnit() default 'ms'  // 'ns' or 'ms'
+
+//    String format() default "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
     //todo: add more optional fields
 

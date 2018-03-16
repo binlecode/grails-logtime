@@ -16,7 +16,7 @@ class GrailsLogtimeGrailsPlugin extends Plugin {
     def author = "Bin Le"
     def authorEmail = "bin.le.code@gmail.com"
     def description = '''\
-A Grails plugin to provide simple logging of method execution time.
+A Grails plugin to provide simple log of method execution time.
 '''
 
     // URL to the plugin's documentation
@@ -44,7 +44,7 @@ A Grails plugin to provide simple logging of method execution time.
         def ltConfig = config.logtime
 
         // log-before-method-call aspect
-        logBeforeTimeAspect(LogBeforeTimeAspect)
+        logBeforeTimeAspect(LogBeforeExecuteAspect)
 
         // log-around-method-call aspect to track execution time
         logExecutionTimeAspect(LogExecutionTimeAspect)

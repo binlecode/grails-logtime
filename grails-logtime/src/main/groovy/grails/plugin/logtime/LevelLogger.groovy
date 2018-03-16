@@ -1,7 +1,9 @@
 package grails.plugin.logtime
 
 import ch.qos.logback.classic.Logger
+import groovy.transform.CompileStatic
 
+@CompileStatic
 class LevelLogger {
 
     static final enum LogLevel {

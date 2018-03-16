@@ -5,7 +5,7 @@ import org.slf4j.MDC
 
 @CompileStatic
 class RequestAuditInterceptor {
-    int order = HIGHEST_PRECEDENCE + 50 // make sure this is the first filter to hit
+    int order = HIGHEST_PRECEDENCE + 10 // make sure this is the first filter to hit
 
     public RequestAuditInterceptor() {
         match controller: '*', action: '*'  // intercept all requests
@@ -26,7 +26,7 @@ class RequestAuditInterceptor {
                 clientAddr: request.getHeader('X-FORWARDED-FOR') ?: request.remoteAddr
         ].toString())
 
-        log.trace "HTTP request - method: ${request.method}, controller: ${controllerName}, action: ${actionName}, params: ${params}"
+//        log.trace "HTTP request - method: ${request.method}, controller: ${controllerName}, action: ${actionName}, params: ${params}"
         true   // pass over to target controller
     }
 

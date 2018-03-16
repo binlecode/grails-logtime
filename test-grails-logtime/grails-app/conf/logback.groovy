@@ -11,7 +11,8 @@ appender('STDOUT', ConsoleAppender) {
         // note that a child thread does not automatically inherit a copy of MDC of its parent
         // see: https://logback.qos.ch/manual/mdc.html
 //        pattern = "%d [%t] %-5level LG:%logger{50} MSG:[%msg] MDC:[tsnId:%X{transactionId:-XX} actId:%X{actorId:-XX} reqInfo:%X{reqInfo:-XX}]%n"
-        pattern = "%d [%t] %highlight(%-5level) %magenta(LG):%logger{50} %magenta(MSG):[%msg] %magenta(MDC):[%mdc]%n"  // allow print-out of whole MDC content
+        pattern = "%d [%t] %highlight(%-5level) LG:%logger{50} MSG:%msg MDC:%mdc %n %X{key1}"  // allow print-out of whole MDC content
+//        pattern = "%d [%t] %highlight(%-5level) %magenta(LG):%logger{50} %magenta(MSG:[) %msg %magenta(]) %magenta(MDC:[) %mdc %magenta(]) %n"  // allow print-out of whole MDC content
     }
 }
 
