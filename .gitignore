@@ -10,3 +10,8 @@ build/
 .project
 .settings
 .classpath
+
+# "temporary" build files
+/target
+*.class
+*.asscache
