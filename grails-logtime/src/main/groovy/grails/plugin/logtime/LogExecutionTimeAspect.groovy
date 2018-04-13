@@ -27,8 +27,8 @@ class LogExecutionTimeAspect {
 
         def level = annotation.level()
 
-        //todo: add to log with more info such thread, MDC, etc
-        log(level, buildMessage('BEFORE', joinPoint, annotation.beforeMessage() ?: annotation.message()))
+        // log before method execution
+        log(level, buildMessage('before', joinPoint, annotation.beforeMessage() ?: annotation.message()))
 
         long start = System.nanoTime()
         try {
@@ -37,12 +37,13 @@ class LogExecutionTimeAspect {
                         // but post-call time tracking must finished
             def afterMessage = annotation.afterMessage() ?: annotation.message()
             long executionTime = System.nanoTime() - start
+            def execTimeStr = "$executionTime ns"
             if (annotation.timeUnit().equalsIgnoreCase('ms')) {
                 executionTime = (Long)(executionTime / 1000000L)
-                log(level, buildAfterMessage('AFTER', joinPoint, "${executionTime} ms", afterMessage))
-            } else {
-                log(level, buildAfterMessage('AFTER', joinPoint, "${executionTime} ns", afterMessage))
+                execTimeStr = "$executionTime ms"
             }
+            // log after method execution or exception
+            log(level, buildMessage('after', joinPoint, afterMessage, execTimeStr))
         }
     }
 
@@ -54,12 +55,7 @@ class LogExecutionTimeAspect {
         LevelLogger.log(this.logger, level, format)
     }
 
-    String buildMessage(String event, JoinPoint joinPoint, String message) {
-        "${event}:${joinPoint.getSignature()} -> ${message ?: ''}"
+    String buildMessage(String event, JoinPoint joinPoint, String message = null, String execTimeStr = null) {
+        "_evt=${event}, _mtd=${joinPoint.getSignature()}${execTimeStr ? ', _rtm=' + execTimeStr : ''}${message ? ', _msg=' + message : ''}"
     }
-
-    String buildAfterMessage(String event, JoinPoint joinPoint, String execTimeStr, String message) {
-        "${event}:${joinPoint.getSignature()}, EXEC_TIME:${execTimeStr} -> ${message ?: ''}"
-    }
-
 }

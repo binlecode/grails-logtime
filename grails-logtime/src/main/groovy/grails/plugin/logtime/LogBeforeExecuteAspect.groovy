@@ -23,18 +23,16 @@ class LogBeforeExecuteAspect {
 
         def level = annotation.level()
 
-        //todo: add closure support before logging
-
         // define an anonymous class from the given attribute closure definition,
         // and create an instance from this anonymous class
-        // it is almost like define an anonymous class with inline body
+        // it is almost like defining an anonymous class with inline body
         Class runClass = annotation.run()
         if (runClass != Void) {
             Closure run = (Closure) runClass.newInstance(null, null)
             run.call(this, annotation)
         }
 
-        log(level, buildMessage(joinPoint))
+        log(level, buildMessage('before', joinPoint))
     }
 
     Logger getLogger() {
@@ -45,8 +43,7 @@ class LogBeforeExecuteAspect {
         LevelLogger.log(this.logger, level, format)
     }
 
-    String buildMessage(JoinPoint joinPoint, String message = null) {
-        "BEFORE:${joinPoint.getSignature()} -> ${message ?: ''}"
+    String buildMessage(String event, JoinPoint joinPoint, String message = null) {
+        "_evt=$event, _mtd=${joinPoint.getSignature()}${message ? ', _msg=' + message : ''}"
     }
-
 }

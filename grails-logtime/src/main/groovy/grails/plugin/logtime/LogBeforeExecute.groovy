@@ -16,7 +16,4 @@ public @interface LogBeforeExecute {
 
     Class run() default Void
 
-//    String format() default "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-
-
 }
