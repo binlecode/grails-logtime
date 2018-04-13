@@ -13,6 +13,10 @@ buildscript {
     }
 }
 
+plugins {
+    id "org.sonarqube" version "2.5"
+}
+
 version "0.1"
 group "test.grails.plugin.logtime"
 
@@ -22,6 +26,8 @@ apply plugin:"war"
 apply plugin:"org.grails.grails-web"
 apply plugin:"org.grails.grails-gsp"
 apply plugin:"asset-pipeline"
+apply plugin: 'org.sonarqube'
+apply plugin: "jacoco"
 
 ext {
     grailsVersion = project.grailsVersion
@@ -61,16 +67,51 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
     //////
+    compile("org.springframework.boot:spring-boot-devtools")
+    //////
     compile project(':grails-logtime')
     compile 'org.grails.plugins:grails-console:2.0.9'
 
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = gradleWrapperVersion
 }
 
 assets {
     minifyJs = true
     minifyCss = true
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = gradleWrapperVersion
+}
+
+test {
+    maxParallelForks = Runtime.runtime.availableProcessors()
+    jacoco {
+        append = false
+        destinationFile = file("$buildDir/jacoco/test.exec")
+    }
+}
+jacoco {
+    toolVersion = "0.7.9"
+}
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+    //todo: fix this integrationTest not found error
+    executionData test //, integrationTest
+}
+
+/**
+ ./gradlew sonarqube \
+ -Dsonar.host.url=http://localhost:9000 \
+ -Dsonar.login=6251af147a77913f1977d7e40aea263f5726f95e
+ */
+sonarqube {
+    properties {
+        property "sonar.projectName", "grails-logtime"
+        property "sonar.groovy.binaries", "${project.buildDir.name}${File.separator}classes/main"
+        property 'sonar.groovy.jacoco.itReportPath', "$buildDir/jacoco/integrationTest.exec"
+        property "sonar.groovy.jacoco.reportPath", "$buildDir/jacoco/test.exec"
+    }
+}
+
