@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit
 
 class HelloController {
 
-    def helloService
+    HelloService helloService
 
     // the run closure has it variable which represents the LogBeforeExecutionAspect instance
     @LogBeforeExecute(level = 'info', message = 'my message', run = { aspect, annotation -> println "run closure before: $aspect" })
@@ -17,7 +17,7 @@ class HelloController {
     }
 
     @LogExecutionTime(level = 'warn')
-    def hello() {
+    def greet() {
         render helloService.buildGreeting()
     }
 
