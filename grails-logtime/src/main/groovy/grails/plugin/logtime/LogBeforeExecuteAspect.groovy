@@ -44,6 +44,6 @@ class LogBeforeExecuteAspect {
     }
 
     String buildMessage(String event, JoinPoint joinPoint, String message = null) {
-        "_evt=$event, _mtd=${joinPoint.getSignature()}${message ? ', _msg=' + message : ''}"
+        "_event=$event, _method=${joinPoint.getSignature()}${message ? ', _message=' + message : ''}"
     }
 }

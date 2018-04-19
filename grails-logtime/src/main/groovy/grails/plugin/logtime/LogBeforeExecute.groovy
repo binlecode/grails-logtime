@@ -7,7 +7,7 @@ import java.lang.annotation.Target
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface LogBeforeExecute {
+@interface LogBeforeExecute {
     String value() default ''
 
     String level() default 'debug'

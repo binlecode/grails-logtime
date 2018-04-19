@@ -56,6 +56,6 @@ class LogExecutionTimeAspect {
     }
 
     String buildMessage(String event, JoinPoint joinPoint, String message = null, String execTimeStr = null) {
-        "_evt=${event}, _mtd=${joinPoint.getSignature()}${execTimeStr ? ', _rtm=' + execTimeStr : ''}${message ? ', _msg=' + message : ''}"
+        "_event=${event}, _method=${joinPoint.getSignature()}${execTimeStr ? ', _runtime=' + execTimeStr : ''}${message ? ', _message=' + message : ''}"
     }
 }
