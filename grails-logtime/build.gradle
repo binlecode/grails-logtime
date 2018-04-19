@@ -74,7 +74,7 @@ jacocoTestReport {
     reports {
         xml.enabled true
     }
-    executionData test, integrationTest
+    executionData test
 }
 
 /**
