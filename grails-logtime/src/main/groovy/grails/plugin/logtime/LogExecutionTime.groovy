@@ -11,7 +11,7 @@ import java.lang.annotation.Target
 
     String value() default ''
 
-    String level() default 'debug'
+    String level() default ''
 
     String message() default ''
 

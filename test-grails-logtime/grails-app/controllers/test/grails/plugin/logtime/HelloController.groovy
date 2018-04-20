@@ -10,13 +10,13 @@ class HelloController {
     HelloService helloService
 
     // the run closure has it variable which represents the LogBeforeExecutionAspect instance
-    @LogBeforeExecute(level = 'info', message = 'my message', run = { aspect, annotation -> println "run closure before: $aspect" })
+    @LogBeforeExecute()
     def index() {
         log.debug "index called"
         render 'index'
     }
 
-    @LogExecutionTime(level = 'warn')
+    @LogExecutionTime()
     def greet() {
         render helloService.buildGreeting()
     }
@@ -37,5 +37,10 @@ class HelloController {
         render 'bar 2'
     }
 
+    @LogBeforeExecute(level = 'warn', message = 'custom message before action foobar',
+            run = { aspect, annotation -> println "run closure before: $aspect" })
+    def foobar() {
+        render 'foo to bar!'
+    }
 
 }

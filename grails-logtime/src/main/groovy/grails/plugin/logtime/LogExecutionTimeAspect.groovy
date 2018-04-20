@@ -15,6 +15,7 @@ import java.lang.annotation.Annotation
 @Slf4j
 @Aspect
 class LogExecutionTimeAspect {
+    String logLevel
 
     @Around("@annotation(grails.plugin.logtime.LogExecutionTime)")
     def logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -25,7 +26,7 @@ class LogExecutionTimeAspect {
 //        Class<?>[] parameterTypes = signature.getMethod().getParameterTypes()
 //        Annotation[][] annotations = joinPoint.getTarget().getClass().getMethod(methodName, parameterTypes).getParameterAnnotations()
 
-        def level = annotation.level()
+        def level = annotation.level() ?: logLevel
 
         // log before method execution
         log(level, buildMessage('before', joinPoint, annotation.beforeMessage() ?: annotation.message()))

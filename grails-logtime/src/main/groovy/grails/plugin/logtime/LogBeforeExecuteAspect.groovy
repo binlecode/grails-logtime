@@ -14,6 +14,7 @@ import java.lang.annotation.Annotation
 @Slf4j
 @Aspect
 class LogBeforeExecuteAspect {
+    String logLevel
 
     @Before("@annotation(grails.plugin.logtime.LogBeforeExecute)")
     void logExecutionTime(JoinPoint joinPoint) throws Throwable {
@@ -21,7 +22,7 @@ class LogBeforeExecuteAspect {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature()
         Annotation annotation = signature.getMethod().getAnnotation(LogBeforeExecute)
 
-        def level = annotation.level()
+        def level = annotation.level() ?: logLevel
 
         // define an anonymous class from the given attribute closure definition,
         // and create an instance from this anonymous class
@@ -32,7 +33,7 @@ class LogBeforeExecuteAspect {
             run.call(this, annotation)
         }
 
-        log(level, buildMessage('before', joinPoint))
+        log(level, buildMessage('before', joinPoint, annotation.message()))
     }
 
     Logger getLogger() {
