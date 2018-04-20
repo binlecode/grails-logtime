@@ -1,7 +1,9 @@
 package grails.plugin.logtime
 
 import grails.plugins.*
+import groovy.util.logging.Slf4j
 
+@Slf4j
 class GrailsLogtimeGrailsPlugin extends Plugin {
 
     // the version or versions of Grails the plugin is designed for
@@ -42,12 +44,19 @@ A Grails plugin to provide simple log of method execution time.
     Closure doWithSpring() { {->
         // TODO Implement runtime spring config (optional)
         def ltConfig = config.logtime
+        def globalLogLevel = ltConfig?.logLevel ?: 'debug'
+
+        log.info "set global logLevel = $globalLogLevel"
 
         // log-before-method-call aspect
-        logBeforeTimeAspect(LogBeforeExecuteAspect)
+        logBeforeTimeAspect(LogBeforeExecuteAspect) {
+            logLevel = globalLogLevel
+        }
 
         // log-around-method-call aspect to track execution time
-        logExecutionTimeAspect(LogExecutionTimeAspect)
+        logExecutionTimeAspect(LogExecutionTimeAspect) {
+            logLevel = globalLogLevel
+        }
 
     } }
 

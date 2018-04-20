@@ -10,7 +10,7 @@ import java.lang.annotation.Target
 @interface LogBeforeExecute {
     String value() default ''
 
-    String level() default 'debug'
+    String level() default ''
 
     String message() default ''
 
