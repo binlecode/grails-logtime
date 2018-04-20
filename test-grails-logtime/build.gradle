@@ -17,7 +17,7 @@ plugins {
     id "org.sonarqube" version "2.5"
 }
 
-version "0.1"
+version "0.2"
 group "test.grails.plugin.logtime"
 
 apply plugin:"eclipse"
