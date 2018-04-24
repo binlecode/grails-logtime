@@ -14,6 +14,15 @@ This repository contains source code of Grails-logtime plugin, and a sample Grai
 
 In host Grails application's build.gradle file:
 
+1. add jcenter plugin url
+
+```groovy
+repositories {
+    // other repos
+    jcenter { url "https://dl.bintray.com/ikalizpet/plugins" }  // grails-appinfo plugin repo
+}
+```
+2. and add plugin dependency
 ```groovy
 plugins {
     compile ':grails-logtime:$version'
