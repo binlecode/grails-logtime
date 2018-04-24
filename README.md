@@ -19,8 +19,7 @@ In host Grails application's build.gradle file:
 ```groovy
 repositories {
     // other repos
-    jcenter { url "https://dl.bintray.com/ikalizpet/plugins" }  // grails-appinfo plugin repo
-}
+    jcenter { url "https://dl.bintray.com/ikalizpet/plugins" }
 ```
 2. and add plugin dependency
 ```groovy
