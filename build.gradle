@@ -1,18 +1,6 @@
-buildscript {
-    repositories {
-        mavenLocal()
-    }
-    dependencies {
-    }
-}
 
 apply plugin: "eclipse"
 apply plugin: "idea"
-
-
-repositories {
-    mavenLocal()
-}
 
 
 
