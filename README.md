@@ -20,6 +20,7 @@ In host Grails application's build.gradle file:
 repositories {
     // other repos
     jcenter { url "https://dl.bintray.com/ikalizpet/plugins" }
+}
 ```
 
 - and add plugin dependency
@@ -36,13 +37,18 @@ Hosting Grails application version 3+.
 
 ## CONFIGURATION
 
+In host Grails application ```grails-app/conf/logback.groovy```
 
-In host Grails application grails-app/conf/application.yml
+```groovy
+// add log entry for logtime loggers such as below:
+logger('grails.plugin.logtime', DEBUG, ['STDOUT'], false)
+```
+
+Optionally, you can set global default log level for logtime loggers. In host Grails application ```grails-app/conf/application.yml```
 
 ```yaml
 logtime:
-    level: debug  # default to debug
-        
+    level: debug  # default to debug       
 ```
 
 ## CHANGELOG
