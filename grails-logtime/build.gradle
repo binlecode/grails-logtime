@@ -99,7 +99,7 @@ grailsPublish {
     // load bintray user and key from jvm -Dvar for security
     user = System.getProperty('bintrayUser')
     key = System.getProperty('bintrayKey')
-    githubSlug = 'ikaliZpet/grails-appinfo'
+    githubSlug = 'ikaliZpet/grails-logtime'
     license {
         name = 'Apache-2.0'
     }
