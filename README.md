@@ -53,6 +53,10 @@ logtime:
 
 ## CHANGELOG
 
+#### 1.3
+* support custom log messages
+* support custom pre-execute run closure
+
 #### 1.0
 * support default log level setting
 
