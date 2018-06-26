@@ -35,7 +35,7 @@ class LogExecutionTimeAspect {
         try {
             return joinPoint.proceed()
         } finally {     // no catch clause, so that no target method's exception is blocked
-                        // but post-call time tracking must finished
+                        // but post-call time tracking must be carried out
             def afterMessage = annotation.afterMessage() ?: annotation.message()
             long executionTime = System.nanoTime() - start
             def execTimeStr = "$executionTime ns"
